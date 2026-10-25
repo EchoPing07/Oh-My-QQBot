@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>OMQ · Oh-My-QQBot</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cg transform='translate(0.9732) scale(1.17933)' fill='%23131313'%3E%3Cpath d='M6.85 9.65a.85.85 0 0 1 .85.85v2a.85.85 0 0 1-1.7 0v-2a.85.85 0 0 1 .85-.85Z'/%3E%3Cpath d='M11.85 9.65a.85.85 0 0 1 .85.85v2a.85.85 0 0 1-1.7 0v-2a.85.85 0 0 1 .85-.85Z'/%3E%3Cpath fill-rule='evenodd' d='M10.2 3.81A2 2 0 1 0 8.5 3.81v.88A9.35 9.35 0 0 0 0 14v1.5a4.85 4.85 0 0 0 4.85 4.85h9a4.85 4.85 0 0 0 4.85-4.85V14A9.35 9.35 0 0 0 10.2 4.69v-.88ZM9.35 6.35a7.65 7.65 0 0 0-7.65 7.65v1.5a3.15 3.15 0 0 0 3.15 3.15h9a3.15 3.15 0 0 0 3.15-3.15V14a7.65 7.65 0 0 0-7.65-7.65Z'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<!-- 图标精灵。集中在一处，页面里用 use 引用对应 id。 -->
+<svg class="sprite" aria-hidden="true"><defs>
+  <symbol id="i-logo" viewBox="0 0 24 24"><g transform="translate(0.9732) scale(1.17933)"><path d="M6.85 9.65039C7.31944 9.65039 7.7 10.0309 7.7 10.5004V12.5004C7.7 12.9698 7.31944 13.3504 6.85 13.3504C6.38056 13.3504 6 12.9698 6 12.5004V10.5004C6 10.0309 6.38056 9.65039 6.85 9.65039Z" fill="currentColor"/><path d="M11.85 9.65039C12.3194 9.65039 12.7 10.0309 12.7 10.5004V12.5004C12.7 12.9698 12.3194 13.3504 11.85 13.3504C11.3806 13.3504 11 12.9698 11 12.5004V10.5004C11 10.0309 11.3806 9.65039 11.85 9.65039Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M10.2 3.8109C10.8795 3.49137 11.35 2.80063 11.35 2C11.35 0.895431 10.4545 0 9.34998 0C8.24541 0 7.34998 0.895431 7.34998 2C7.34998 2.80065 7.82044 3.49141 8.5 3.81092V4.68851C3.73448 5.11795 0 9.12306 0 14.0004V15.5004C0 18.179 2.17142 20.3504 4.85 20.3504H13.85C16.5286 20.3504 18.7 18.179 18.7 15.5004V14.0004C18.7 9.12305 14.9655 5.11795 10.2 4.68851V3.8109ZM9.35 6.35039C5.12502 6.35039 1.7 9.77541 1.7 14.0004V15.5004C1.7 17.2401 3.1103 18.6504 4.85 18.6504H13.85C15.5897 18.6504 17 17.2401 17 15.5004V14.0004C17 9.77541 13.575 6.35039 9.35 6.35039Z" fill="currentColor"/></g></symbol>
+  <symbol id="i-overview" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.2 9.2 0 0 1-3.8-.8L3 21l1.9-5.2a8.4 8.4 0 0 1-.9-3.8 8.4 8.4 0 0 1 8.4-9 8.4 8.4 0 0 1 8.6 8.5Z"/></symbol>
+  <symbol id="i-talk" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h8A2.5 2.5 0 0 1 17 5.5v4A2.5 2.5 0 0 1 14.5 12H9.4L6 15v-3.2A2.5 2.5 0 0 1 4 9.5v-4Z"/><path d="M19.4 9h.1A2.5 2.5 0 0 1 22 11.5v4a2.5 2.5 0 0 1-2 2.4V21l-3.4-3h-4.1a2.5 2.5 0 0 1-2.3-1.5h4.3a4 4 0 0 0 4-4V9Z"/></symbol>
+  <symbol id="i-memory" viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 17.5 12 22l9-4.5"/></symbol>
+  <symbol id="i-learn" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.5.4.8 1 .8 1.6V16h5.4v-.5c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3Z"/></symbol>
+  <symbol id="i-config" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.2"/><circle cx="10" cy="17" r="2.2"/></symbol>
+  <symbol id="i-model" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M8.2 6h7.6M7 8l4 8M17 8l-4 8"/></symbol>
+  <symbol id="i-prompt" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/><circle cx="18" cy="12" r="1.6"/></symbol>
+  <symbol id="i-data" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 20h16"/></symbol>
+  <symbol id="i-logs" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9.5 9.5 12 7 14.5M12.5 15h4"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M15 17l5-5-5-5M20 12H9M12 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v5h-5"/></symbol>
+  <symbol id="i-empty" viewBox="0 0 24 24"><path d="M4 13h4l1.5 3h5L16 13h4"/><path d="M5.5 5h13l1.5 8v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4l1.5-8Z"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+</defs></svg>
+
+<!-- 登录 -->
+<div id="login" class="login">
+  <form class="login-card" id="login-form" autocomplete="on">
+    <div class="login-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><use href="#i-logo"/></svg>
+    </div>
+    <h1>Oh-My-QQBot</h1>
+    <p class="login-sub">输入控制台密码</p>
+    <div class="login-field">
+      <input type="password" id="password" placeholder="密码" autocomplete="current-password" autofocus spellcheck="false">
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">进入</button>
+    <p class="login-error" id="login-err" role="alert"></p>
+    <p class="login-foot">OMQ · 单密码登录，无账号体系</p>
+  </form>
+</div>
+
+<!-- 主界面 -->
+<div id="app" class="app" hidden>
+
+  <div class="scrim" id="scrim"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#/overview">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><use href="#i-logo"/></svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">OMQ</span>
+        <span class="brand-desc">Oh-My-QQBot</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="主导航">
+      <!-- 分组与层级对齐 MaiBot 的侧栏结构：概览 / 配置管理 / 资源管理。
+           它的「扩展集成」「高级工具」两组对应插件、MCP、Prompt 管理、
+           数据迁移，本项目这些功能都没有，整组删掉而不是留空分组。
+           「运行记录」在参考实现里是日志工作区的页签，我们把它展开成
+           侧栏里的两条 —— 理由见 docs/maibot-webui-structure.md 第 6 节。
+
+           这里的每一条都必须与 app.js 的 ROUTES 一一对应，
+           TestStaticRoutesMatchNav 双向检查。 -->
+      <p class="nav-group">概览</p>
+      <a class="nav-item" href="#/overview" data-nav="overview">
+        <svg class="ic"><use href="#i-overview"/></svg><span>概览</span>
+      </a>
+      <a class="nav-item" href="#/chats" data-nav="chats">
+        <svg class="ic"><use href="#i-chat"/></svg><span>会话</span>
+      </a>
+      <!-- 网页对话窗口（对应 MaiBot dashboard 的 /chat）：以人类身份与机器人私聊。 -->
+      <a class="nav-item" href="#/talk" data-nav="talk">
+        <svg class="ic"><use href="#i-talk"/></svg><span>对话</span>
+      </a>
+
+      <p class="nav-group">配置管理</p>
+      <a class="nav-item" href="#/config" data-nav="config">
+        <svg class="ic"><use href="#i-config"/></svg><span>详细设置</span>
+      </a>
+      <a class="nav-item" href="#/models" data-nav="models">
+        <svg class="ic"><use href="#i-model"/></svg><span>模型</span>
+      </a>
+      <a class="nav-item" href="#/prompts" data-nav="prompts">
+        <svg class="ic"><use href="#i-prompt"/></svg><span>提示词</span>
+      </a>
+      <a class="nav-item" href="#/data" data-nav="data">
+        <svg class="ic"><use href="#i-data"/></svg><span>数据</span>
+      </a>
+
+      <p class="nav-group">资源管理</p>
+      <a class="nav-item" href="#/memory" data-nav="memory">
+        <svg class="ic"><use href="#i-memory"/></svg><span>记忆</span>
+      </a>
+      <a class="nav-item" href="#/learning" data-nav="learning">
+        <svg class="ic"><use href="#i-learn"/></svg><span>学习</span>
+      </a>
+
+      <p class="nav-group">运行记录</p>
+      <a class="nav-item" href="#/logs" data-nav="logs">
+        <svg class="ic"><use href="#i-logs"/></svg><span>终端日志</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="conn">
+        <span class="conn-dot" id="conn-dot"></span>
+        <span class="conn-text" id="conn-text">未连接</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="workspace">
+    <header class="topbar">
+      <button class="btn btn-ghost btn-icon topbar-menu" id="menu-toggle" type="button" aria-label="打开导航">
+        <svg class="ic"><use href="#i-menu"/></svg>
+      </button>
+      <div class="topbar-title">
+        <h2 id="page-title">概览</h2>
+        <p id="page-sub"></p>
+      </div>
+
+      <!-- 全局动作放在顶栏右侧。
+           与参考实现的 Header 一致：主题/退出这类全局动作不属于任何一页。 -->
+      <div class="topbar-global">
+        <button class="btn btn-ghost btn-icon" id="theme-toggle" type="button" title="切换主题" aria-label="切换主题">
+          <svg class="ic"><use href="#i-moon"/></svg>
+        </button>
+        <button class="btn btn-ghost btn-icon" id="logout" type="button" title="退出登录" aria-label="退出登录">
+          <svg class="ic"><use href="#i-logout"/></svg>
+        </button>
+      </div>
+
+      <div class="topbar-actions" id="page-actions"></div>
+    </header>
+
+    <!-- 页内页签（记忆 / 学习）。照抄 MaiBot 的做法：把多个子页面折进一个
+         侧栏入口，用 ?tab= 记住当前页签。 -->
+    <div class="page-tabs" id="page-tabs" role="tablist" hidden></div>
+
+    <main class="content" id="content"></main>
+  </div>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>

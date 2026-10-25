@@ -1,0 +1,33 @@
+# 忽略
+# 二进制只忽略文件本身，不能写成裸 `mumu`：
+# 裸名会连带匹配同名的目录，曾经导致 cmd/mumu/ 整个入口目录没进版本库。
+/oh-my-qqbot
+/oh-my-qqbot.exe
+/mumu
+/mumu.exe
+config.toml
+data/
+logs/
+*.log
+*.db
+*.db-wal
+*.db-shm
+
+# 第三方参考实现，自带 .git，不纳入本仓库
+refs/
+
+# 本地工作文档，不入库
+docs/
+/AGENTS.md
+/起草提示词工作区/
+/deploy/
+
+# 编辑器 / 备份
+.obsidian/
+*.exe~
+*~
+.playwright-cli/
+
+# 调试工具编译产物
+/layoutcheck.exe
+/uicheck.exe
